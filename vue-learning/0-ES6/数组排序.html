@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 数组排序
+    let values = [1, 3, 8, 5, 15, 26]
+    // 倒叙排序
+    console.log(`倒序${values.reverse().toString()}`);//倒序26,15,5,8,3,1
+    // 数组排序
+    values.sort()
+    console.log(`顺序${values.toString()}`)//顺序1,15,26,3,5,8
+
+    // 上述的并不是我们想要的结果,我们可以自定义规则
+    function compare1(value1, value2) {//定义比较规则
+      return value1 - value2//放回值只有小于0,等于0,大于0这三种
+    }
+    function compare2(value1, value2) {//定义比较规则
+      return value2 - value1//放回值只有小于0,等于0,大于0这三种
+    }
+    values.sort(compare1)//时使用比较规则,当里面的结果大于零时将将第二个数向前移,小于零和等于零时位置不变
+    console.log(`顺序${values.toString()}`);//顺序1,3,5,8,15,26
+    values.sort(compare2)
+    console.log(`倒序${values.toString()}`);//倒序26,15,8,5,3,1
+
+    // 比较对象
+    let test14 = [{ name: "江南", age: 36 },
+    { name: "李炫一", age: 31 },
+    { name: "江北", age: 39 }]
+    function comparePlayer(test1, test2) {
+      return test1.age - test2.age
+    }
+    test14.sort(comparePlayer)//按照年龄排序
+    console.log(test14)//: {name: '李炫一', age: 31},{name: '江南', age: 36},{name: '江北', age: 39}
+
+  </script>
+</body>
+</html>

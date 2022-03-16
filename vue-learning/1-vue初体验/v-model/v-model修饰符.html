@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- lazy当输入框失去焦点或是回车才会执行 -->
+<input v-model.lazy="name" type="text" />
+<h2>输入姓名:{{name}},类型是{{typeof name}}</h2>
+
+<input v-model.number.lazy="age" type="text" />
+<h2>输入年纪:{{age}},类型是{{typeof age}}</h2>
+
+<input v-model.trim.lazy="info" type="text" />
+<h2>输入内容:{{info}},类型是{{typeof info}}</h2>
+
+<!-- multiple  多选 -->
+<input type="text" multiple>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    let app = Vue.createApp({
+      data() {
+      return {
+      name:'',
+      age:null,
+      info:'',
+
+      };
+      },
+      created() {
+        
+      },
+      mounted() {
+        
+      },
+      methods: {
+        
+      },
+    });
+    let vm = app.mount('#app');
+  </script>
+</body>
+
+<html>

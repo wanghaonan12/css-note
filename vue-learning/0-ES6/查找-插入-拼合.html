@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 数组的剪切于拼合
+    // test11=["卡尔","魔术师","庞巴迪"],values=[26,15,8,5,3,1]拼接
+    let test11=["卡尔","魔术师","庞巴迪"]
+    let values=[26,15,8,5,3,1]
+    let test15 = test11.concat(values)
+    console.log(`拼接----${test15}`);//拼接----卡尔,魔术师,庞巴迪,26,15,8,5,3,1
+
+    // scil可以将数组剪切成一个新的数组
+    /* 
+    记3个参数，从下标为(参数⼀)开始，删除(参数⼆)个元素，插⼊(参数三)个项。参数三可以是多个，并且是可选。通过对三个参数的组合来实现删除、插⼊、替换操作。
+    */
+
+    console.log(`[26,15,8,5,3,1].slice(1)---${values.slice(1)}`);//[26,15,8,5,3,1].slice(1)---15,8,5,3,1
+
+    console.log(`26,15,8,5,3,1.slice(0,0,77777)--${values.slice(0, 0, "12")}`);
+
+
+
+
+
+    //成员查找
+    //这两个⽅法在找不到数据时，返回-1
+    // values=[26,15,8,5,3,1]
+    console.log(`values=[26,15,8,5,3,1].indexof(26)----${values.indexOf(26)}`);//从数组头部查找数据返回下标位置
+    console.log(`values=[26,15,8,5,3,1].lastIndexof(26)----${values.lastIndexOf(26)}`);//从数组末尾查找数据返回下标位置
+
+    //查找符合条件的第⼀个数组成员,找不到返回undefined
+    let players = ["curry", "james", "kobe", "james", "curry"];
+    console.log(players.indexOf("james"));//1,从数组头部查找数据返回下标位置
+    console.log(players.lastIndexOf("james"));//3,从数组末尾查找数据返回下标位置
+    let findOne = players.find(function (value, index, arr) {
+      return value.includes("cu")
+    })
+    console.log("+++++++++++++++++++++++++++++++++");
+    console.log(findOne) //curry,curry包含cu
+
+    //查找符合条件的第⼀个数组成员下标，找不到返回-1
+    let findOneIndex = players.findIndex(function (value, index, arr) {
+      return value.includes("cu")
+    })
+    console.log(findOneIndex) //0,curry包含cu，第⼀个元素下标是0
+
+    /* 单纯的通过数据遍历⽐对，查找数组成员下标，⽤indexOf和lastIndexOf⽅法会更合适
+    如果需要更复杂复杂的规则查找数组成员，⽤findfindIndex⽅法更合适上⽂中includes⽅式是ES6新⽅法，⽤于判断字符串的包含关系，返回值是布尔类型
+    find和findIndex⽅法参数是：当前的值，当前的数组成员下标，原数组
+     */
+
+
+
+    //简写
+    let findOne1 = players.find((value, index, arr) => value.includes("cu"))
+    let findOne2 = players.find((value) => value.includes("cu")) //只传第⼀个参数
+
+
+
+    //遍历数组
+    //for( in ){}循环只能得到索引,利用索引得到值
+    for (index in players) {
+      console.log(index + ":" + players[index])
+    }//0:curry  1:james   2:kobe  3:james  4:curry
+    for (player in players) {
+      console.log(player)
+    }// 0 1 2 3 4 
+
+
+    // for( of ){}比较灵活单独的到索引,数值或是键值
+    for (let index of players.keys()) {
+      console.log(index) //打印是0,1,2,3,4
+      console.log(players[index]);//打印是curry james  kobe james curry
+    }
+    for (let elem of players.values()) {
+      console.log(elem) //打印是curry james  kobe james curry
+    }
+    for (let [index, elem] of players.entries()) {
+      console.log(index, elem) //打印如下0'curry'  1'james'   2'kobe'  3'james'  4'curry'
+    }
+
+  </script>
+</body>
+</html>

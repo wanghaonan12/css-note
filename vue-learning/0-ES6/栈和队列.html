@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 栈和队列的实现方法利用push:向数组尾部加n项,pop:从数组尾部取1项，并在数组中删除该项,unshift:向数组头部加n项,shift:从数组头部取1项，并在数组中删除该项
+
+    let test11 = ["卡尔", "魔术师", "庞巴迪"]
+    // 队列:先进先出，所以可以⽤push()和shift()⽅法配合实现队列，也可以使⽤unshift()配合pop()
+    let test12 = []
+    let test13 = []
+    let test17 = []
+    let test16 = []
+    for (let index = 0; index < test11.length + 1; index++) {
+      //加入尾部
+      test12.push(test11[index])
+      //加入前方
+      test13.unshift(test11[index])
+    }
+    for (let index = 0; index < test12.length + 1; index++) {
+      // 从前方拿出
+      console.log(`12队列----${test12.shift()}`);
+    }
+    for (let index = 0; index < test13.length + 1; index++) {
+      // 从尾部拿出
+      console.log(`13队列----${test13.pop()}`);
+    }
+
+    // 栈:先进后出，后进先出。所以可以使⽤push()和pop()来实现。也可以使⽤unshift()和shift()来实现，但从语义的⻆度⽤前者更好。
+    for (let index = 0; index < test11.length; index++) {
+      //加入尾部
+      test16.push(test11[index])
+      //加入前方
+      test17.unshift(test11[index])
+    }
+    console.log("------------------");
+    console.log(test16);
+    console.log(test17);
+    console.log("------------------");
+    for (let index = 0; index < test16.length+2; index++) {
+      // 从后拿出
+      console.log(`16栈----${test16.pop()}`);
+    }
+    for (let index = 0; index < test17.length+2; index++) {
+      // 从前方拿出
+      console.log(`17栈----${test17.shift()}`);
+    }
+
+  </script>
+</body>
+</html>

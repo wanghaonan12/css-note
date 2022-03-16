@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue3todolist</title>
+  <style>
+    img{
+      width: 25%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app">
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <script>
+    // 
+    const app = Vue.createApp({
+      data() {
+        return {
+          list: ["../images/1.jpg", "../images/test.jpg"]
+        }
+      },
+      methods: {
+      },
+      template: `
+    <ul>
+        <todo-item 
+        v-for="(item,index) of list"
+        :src="item">
+    </ul>
+    `
+    });
+    app.component("todo-item", {
+      props: ["src", "index"],
+      template: `
+  <li><img :src="src"></li>
+  `
+    });
+    app.mount('#app');
+  </script>
+</body>
+
+</html>

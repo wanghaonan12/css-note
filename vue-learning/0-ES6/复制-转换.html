@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     //Array.from()可以将类似数组的对象和可⽐遍历的对象(如:ES6的Set)转换为数组
+
+     let playersObje = { '0': "curry", '1': "james", '2': "kobe", length: 3 };
+    let players3 = Array.from(playersObje);
+    console.log(players);
+    /* 
+    0: "curry"
+    1: "james"
+    2: "kobe"
+    3: "james"
+    4: "curry"
+    length: 5 */
+
+    let playerSet = new Set(["curry", "james", "kobe"])
+    players3 = Array.from(playerSet);
+    console.log(players3);
+    /* 
+    0: "curry"
+    1: "james"
+    2: "kobe"
+    length: 3
+     */
+    // copyWithIn()⽤于将数组内的指定位置的成员，复制到其他位置（覆盖原有项）。
+
+    console.log([0, 1, 2, 3, 4].copyWithin(0, 3, 5))//[3, 4, 2, 3, 4]
+
+    /* 
+    第⼀个参数是target，复制到的位置
+    第⼆个参数是从哪个位置开始复制
+    第三个参数是到哪个位置结束复制
+    
+    所以上⾯例⼦是将3,4复制到数组下标为0的位置，所以最终于是[3, 4, 2, 3, 4]
+    */
+  </script>
+</body>
+</html>

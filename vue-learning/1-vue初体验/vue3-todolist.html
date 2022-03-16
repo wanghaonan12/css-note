@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现todolist--了解循环和双向绑定</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+    data(){
+      return{
+        inputValue : '',
+        list:['1','2','3'],
+      }
+    },
+    methods:{
+      handleBtnClick(){
+        this.list.push(this.inputValue),
+        this.inputValue=''
+      }
+    },
+    template:`
+      <div>
+        <input v-model="inputValue">
+        <button v-on:click="handleBtnClick">增加</button>
+        <ul>
+          <li v-for="(ite,index) of list" 
+          :style="'color:'+(ite>10?'red':'green')+';'">
+            {{ite}}</li>
+        </ul>
+        </div>
+        `,
+  }).mount('#app')
+  </script>
+</body>
+</html>

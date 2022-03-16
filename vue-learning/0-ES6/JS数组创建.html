@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 数组的操作
+
+
+    // 构造函数创建数组
+    var test1 = new Array();
+    let test2 = new Array(20);//length为20的数组
+    let test3 = new Array("卡尔", "魔术师", "庞巴迪");//创建3个初始化的数组
+
+    // 关键字new可以省略
+    let test4 = Array();
+    let test5 = Array(20);
+    let test6 = Array(20).fill(20);//创建一个有20个且值都是20的数组
+    let test7 = Array("卡尔", "魔术师", "庞巴迪");
+
+    // 通过字面量创建(常见且推荐)
+    let test8 = [];
+    let test9 = ["卡尔", "魔术师", "庞巴迪"];
+
+    //通过Array.of()函数创建
+    let test10 = Array.of("卡尔", "魔术师", "庞巴迪");
+    console.log(test10);//["卡尔","魔术师","庞巴迪"]
+
+
+
+    // 数组长度变化对数组的影响
+
+    /* 1.数组的length属性不是只读的,可以修改
+    2.如果，将数组的length设置⼤于当前数组的项⽬，新加的每⼀项也都是undefined。
+    3.如果,将数组的长度修改的比原来小,相当于删除后面多余的项 
+    4.超出数组⻓度赋值，数组会⾃动扩充到指定项的⻓度。没有被赋值的项，为undefined*/
+
+    // let test3=new Array("卡尔","魔术师","庞巴迪");
+    test3.length = 2;
+    console.log(test3);//["卡尔","魔术师"]
+    test3.length = 5;
+    console.log(test3[4]);//undefined
+
+    //检测数组类型
+    console.log(Array.isArray(test3)) //true，ES5⽅法，推荐使⽤
+    console.log(test3 instanceof Array) //true，多个js前端框架共⽤环境下可能有问题
+
+
+    // 数组的字符串转换
+
+    test3 = ["卡尔", "魔术师", "庞巴迪"]; //创建带有三个初始化项的数组
+    console.log(test3.toString()); //卡尔,魔术师,庞巴迪。默认使⽤逗号分隔
+    console.log(test3.toLocaleString()); //卡尔,魔术师,庞巴迪
+    console.log(test3.join("&")); //卡尔&魔术师&庞巴迪  如果想⾃定义分隔符号使⽤join
+
+    //toString()和toLocaleString()通常输出是⼀致的。但是当我们数组元素是js对象的时候，对象可以⾃定义这两个函数。locale通常指本地化。例如我们可以⾃定义这两个函数：toString返回值"kobe"，toLocaleString返回值"科⽐"。
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     // 数组的解构赋值
+     let [player1, player2, player3] = ["卡尔", "魔术师", "庞巴迪"]
+    console.log(player2);//魔术师
+    // 嵌套模式匹配
+    let [player4, [[player5], player6]] = ["米拉", [["狼人"], "雪雪"]]
+    console.log(player5);//狼人
+    // 非规则模式匹配,嵌套数组解构复制
+    let [player7, [[player8], player9]] = ["米拉", [["狼人", "树一"], "雪雪"]]
+    console.log(player7);//米拉
+    console.log(player8);//狼人
+    console.log(player9);//雪雪
+    //数组解构赋值
+    let [player10, ...other] = ["卡尔", "魔术师", "庞巴迪"]
+    console.log(player10);//卡尔
+    console.log(other);//["魔术师","庞巴迪"]
+    //数组解构默认值设置
+    let [player11, player12 = "星城"] = ["狼灭"]
+    console.log(player11);//狼灭
+    console.log(player12);//星城
+
+    /* ##################### 
+    数组的解构赋值的基本要求就是：等号左侧赋值变量数组和等号右侧被解构的数组，能够在模式上正确匹配
+    #################### */
+
+
+    // 数组的实例
+    // 在函数参数上的应用
+    function add([{ name: name1, age: age1 }, { name: name2, age: age2 }]) {
+      return age1 + age2
+    }
+    console.log(add([{ name: "星城", age: 500 }, { name: "雪雪", age: 18 }]));//518
+    // 利用变量结构进行,数据交换(如果没有,需要建一个空的变量进行辅助)
+    let a = 10
+    let b = 15
+    console.log(a + "------------" + b);
+    [a, b] = [b, a]
+    console.log(a + "------------" + b);
+
+    // ES6的新数据类型map
+    let map1 = new Map();
+    map1.set("p1", "岛田")
+    map1.set("p2", "星耀")
+    // 利用map结构的key和value
+    for (let [key, value] of map1) {
+      console.log(key + "-----------" + value);//
+      console.log(`${key}-----------${value}`);//输出拼接模板作用同上
+    }
+
+
+    //对象的解构赋值
+    let { age: age, name: name } = { name: "李叔", age: 15 }
+    // 对象解构赋值,属性名对上即可,顺序无所谓
+    // 简写let {age,name}={name:"李叔",age:15}
+    console.log(`${name}-----${age}`);
+
+    //不但可以解构对象⾥⾯的属性，还可以解构对象的成员⽅法。⽐如⼤家都知道Math对象的三个⽅法：sqrt、sin、cos分别⽤于计算平⽅根，正弦，余弦。
+
+    // 对象方法的解构
+    let { sqrt, sin, cos } = Math
+    console.log(sqrt(4));//2
+
+    // 字符串的解构赋值
+    let [a1, a2, a3, a4] = "abcd"
+    console.log(a1);//a
+    console.log(a2);//b
+    console.log(a3);//c
+    console.log(a4);//d
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3插值表达式</title>
+  <style>
+    /* 在 v-clak指令渲染前不显示*/
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+   
+    <!-- v-text解决闪停问题 -->
+<p v-text="message"></p>
+<!-- 不可拼装 -->
+<!-- <p v-text="你好,message"></p> -->
+<p v-cloak>你好{{message}}</p>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    let app = Vue.createApp({
+      data() {
+        return {
+          fristName: 'wang_rich',
+          lastName: 'curry',
+          count: 10,
+          age: '<strong>123</strong>',
+          message: 'hello word'
+        }
+      }, methods: {
+        customMethod(str) {
+          return str.split('').reverse().join(',')
+        },
+        random() {
+          return Math.floor(Math.random() * 10) + 1
+        }
+      },
+
+    });
+    let vm = app.mount("#root");
+  </script>
+</body>
+
+</html>

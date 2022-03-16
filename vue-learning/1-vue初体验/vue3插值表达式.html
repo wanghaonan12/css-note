@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3插值表达式</title>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 使用插值显示变量 -->
+    <p>{{fristName}},{{lastName}},{{age}}岁</p>
+    <!--简单算术运算 -->
+    <p>{{count*10}}</p>
+    <!-- 使用,访问变量的属性 -->
+    <p>{{fristName.length}}</p>
+    <!-- 字符串拼接 -->
+    <p>{{fristName+'------'+lastName}}</p>
+    <!-- 三目运算 -->
+    <p>{{fristName==='wang_rich'?'真棒':'垃圾'}}</p>
+    <!-- 调用自定义函数 -->
+    <p>{{customMethod(lastName)}}</p>
+    <!-- 调用方法 -->
+    <p>{{random()}}</p>
+    <!-- 字符串拼接 -->
+    <p>{{fristName}}真帅</p>
+
+
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    let app = Vue.createApp({
+      data() {
+        return {
+          fristName: 'wang_rich',
+          lastName: 'curry',
+          count: 10,
+          age: '<strong>123</strong>'
+        }
+      }, methods: {
+        customMethod(str) {
+          return str.split('').reverse().join(',')
+        },
+        random() {
+          return Math.floor(Math.random() * 10) + 1
+        }
+      },
+
+    });
+    let vm = app.mount("#root");
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3插值表达式</title>
+  
+</head>
+
+<body>
+  <script src="date-format.js"></script>
+  <script src="https://unpkg.com/vue@next"></script>
+  <div id="root">
+    <!-- 功能有效并且覆盖朱标签中的原有值 -->
+    <p v-html="age">拉拉</p>
+    <!-- v-pre 原样输出 -->
+     <p v-pre>{{fristName}}真帅</p>
+    <p >{{time}}</p>
+  </div>  
+  <script>
+    let app = Vue.createApp({
+      data() {
+        return {
+          fristName: 'wang_rich',
+          lastName: 'curry',
+          count: 10,
+          age: '<strong>123岁</strong>',
+          time:getTime(new Date())
+        }
+      },
+        methods: {
+        
+        customMethod(str) {
+          return str.split('').reverse().join(',')
+        },
+        random() {
+          return Math.floor(Math.random() * 10) + 1
+        }
+      },
+
+    });
+    let vm = app.mount("#root");
+  </script>
+</body>
+
+</html>

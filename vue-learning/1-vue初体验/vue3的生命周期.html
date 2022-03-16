@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3生命周期</title>
+</head>
+<body>
+  <div id="root">
+  </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app=Vue.createApp({
+        data() {
+          return {
+            message:"hello word"
+          }
+        },
+          // 在Vue3实例生成后自动执行
+          created() {
+            console.log('created',this.message);
+          },
+          // 在Vue3实例生成前自动执行
+
+          beforeCreate() {
+            console.log('beforecreated');
+          },
+          // 在Vue3实例渲染前自动执行
+          beforeMount(){
+            console.log('beforeMount',this.message);
+          },
+          // 在Vue3实例渲染后自动执行
+          mounted() {
+            console.log(' mounted',this.message);
+          },
+          // 在Vue3实例中data更新前自动执行(在在控制台vm.$data.message="aaa"模拟操作)
+          beforeUpdate() {
+            console.log('beforeUpdate',this.message);
+          },
+          // 在Vue3实例中data更新后自动执行
+          updated() {
+            console.log('updated',this.message);
+          },
+          // 在Vue3实例销毁前自动执行(通过在控制器挨app.unmount()模拟操作执行)
+          beforeUnmount() {
+            console.log('beforeUnmount',this.message);
+          },
+          // 在Vue3实例销毁后自动执行
+          unmounted() {
+            console.log('unmounted');
+          },
+        template:`<h2>{{message}}</h2>`
+      });
+      const vm=app.mount("#root");
+    </script>
+</body>
+</html>

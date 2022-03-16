@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+
+    // 数组的解构赋值
+    let [player1, player2, player3] = ["卡尔", "魔术师", "庞巴迪"]
+    console.log(player2);//魔术师
+    // 嵌套模式匹配
+    let [player4, [[player5], player6]] = ["米拉", [["狼人"], "雪雪"]]
+    console.log(player5);//狼人
+    // 非规则模式匹配,嵌套数组解构复制
+    let [player7, [[player8], player9]] = ["米拉", [["狼人", "树一"], "雪雪"]]
+    console.log(player7);//米拉
+    console.log(player8);//狼人
+    console.log(player9);//雪雪
+    //数组解构赋值
+    let [player10, ...other] = ["卡尔", "魔术师", "庞巴迪"]
+    console.log(player10);//卡尔
+    console.log(other);//["魔术师","庞巴迪"]
+    //数组解构默认值设置
+    let [player11, player12 = "星城"] = ["狼灭"]
+    console.log(player11);//狼灭
+    console.log(player12);//星城
+
+    /* ##################### 
+    数组的解构赋值的基本要求就是：等号左侧赋值变量数组和等号右侧被解构的数组，能够在模式上正确匹配
+    #################### */
+
+
+    // 数组的实例
+    // 在函数参数上的应用
+    function add([{ name: name1, age: age1 }, { name: name2, age: age2 }]) {
+      return age1 + age2
+    }
+    console.log(add([{ name: "星城", age: 500 }, { name: "雪雪", age: 18 }]));//518
+    // 利用变量结构进行,数据交换(如果没有,需要建一个空的变量进行辅助)
+    let a = 10
+    let b = 15
+    console.log(a + "------------" + b);
+    [a, b] = [b, a]
+    console.log(a + "------------" + b);
+
+    // ES6的新数据类型map
+    let map1 = new Map();
+    map1.set("p1", "岛田")
+    map1.set("p2", "星耀")
+    // 利用map结构的key和value
+    for (let [key, value] of map1) {
+      console.log(key + "-----------" + value);//
+      console.log(`${key}-----------${value}`);//输出拼接模板作用同上
+    }
+
+
+    //对象的解构赋值
+    let { age: age, name: name } = { name: "李叔", age: 15 }
+    // 对象解构赋值,属性名对上即可,顺序无所谓
+    // 简写let {age,name}={name:"李叔",age:15}
+    console.log(`${name}-----${age}`);
+
+    //不但可以解构对象⾥⾯的属性，还可以解构对象的成员⽅法。⽐如⼤家都知道Math对象的三个⽅法：sqrt、sin、cos分别⽤于计算平⽅根，正弦，余弦。
+
+    // 对象方法的解构
+    let { sqrt, sin, cos } = Math
+    console.log(sqrt(4));//2
+
+    // 字符串的解构赋值
+    let [a1, a2, a3, a4] = "abcd"
+    console.log(a1);//a
+    console.log(a2);//b
+    console.log(a3);//c
+    console.log(a4);//d
+
+
+
+
+
+
+
+    // 数组的操作
+
+
+    // 构造函数创建数组
+    var test1 = new Array();
+    let test2 = new Array(20);//length为20的数组
+    let test3 = new Array("卡尔", "魔术师", "庞巴迪");//创建3个初始化的数组
+
+    // 关键字new可以省略
+    let test4 = Array();
+    let test5 = Array(20);
+    let test6 = Array(20).fill(20);//创建一个有20个且值都是20的数组
+    let test7 = Array("卡尔", "魔术师", "庞巴迪");
+
+    // 通过字面量创建(常见且推荐)
+    let test8 = [];
+    let test9 = ["卡尔", "魔术师", "庞巴迪"];
+
+    //通过Array.of()函数创建
+    let test10 = Array.of("卡尔", "魔术师", "庞巴迪");
+    console.log(test10);//["卡尔","魔术师","庞巴迪"]
+
+
+
+    // 数组长度变化对数组的影响
+
+    /* 1.数组的length属性不是只读的,可以修改
+    2.如果，将数组的length设置⼤于当前数组的项⽬，新加的每⼀项也都是undefined。
+    3.如果,将数组的长度修改的比原来小,相当于删除后面多余的项 
+    4.超出数组⻓度赋值，数组会⾃动扩充到指定项的⻓度。没有被赋值的项，为undefined*/
+
+    // let test3=new Array("卡尔","魔术师","庞巴迪");
+    test3.length = 2;
+    console.log(test3);//["卡尔","魔术师"]
+    test3.length = 5;
+    console.log(test3[4]);//undefined
+
+    //检测数组类型
+    console.log(Array.isArray(test3)) //true，ES5⽅法，推荐使⽤
+    console.log(test3 instanceof Array) //true，多个js前端框架共⽤环境下可能有问题
+
+
+    // 数组的字符串转换
+
+    test3 = ["卡尔", "魔术师", "庞巴迪"]; //创建带有三个初始化项的数组
+    console.log(test3.toString()); //卡尔,魔术师,庞巴迪。默认使⽤逗号分隔
+    console.log(test3.toLocaleString()); //卡尔,魔术师,庞巴迪
+    console.log(test3.join("&")); //卡尔&魔术师&庞巴迪  如果想⾃定义分隔符号使⽤join
+
+    //toString()和toLocaleString()通常输出是⼀致的。但是当我们数组元素是js对象的时候，对象可以⾃定义这两个函数。locale通常指本地化。例如我们可以⾃定义这两个函数：toString返回值"kobe"，toLocaleString返回值"科⽐"。
+
+    // 栈和队列的实现方法利用push:向数组尾部加n项,pop:从数组尾部取1项，并在数组中删除该项,unshift:向数组头部加n项,shift:从数组头部取1项，并在数组中删除该项
+
+    let test11 = ["卡尔", "魔术师", "庞巴迪"]
+    // 队列:先进先出，所以可以⽤push()和shift()⽅法配合实现队列，也可以使⽤unshift()配合pop()
+    let test12 = []
+    let test13 = []
+    let test17 = []
+    let test16 = []
+    for (let index = 0; index < test11.length + 1; index++) {
+      //加入尾部
+      test12.push(test11[index])
+      //加入前方
+      test13.unshift(test11[index])
+    }
+    for (let index = 0; index < test12.length + 1; index++) {
+      // 从前方拿出
+      console.log(`12队列----${test12.shift()}`);
+    }
+    for (let index = 0; index < test13.length + 1; index++) {
+      // 从尾部拿出
+      console.log(`13队列----${test13.pop()}`);
+    }
+
+    // 栈:先进后出，后进先出。所以可以使⽤push()和pop()来实现。也可以使⽤unshift()和shift()来实现，但从语义的⻆度⽤前者更好。
+    for (let index = 0; index < test11.length; index++) {
+      //加入尾部
+      test16.push(test11[index])
+      //加入前方
+      test17.unshift(test11[index])
+    }
+    console.log("------------------");
+    console.log(test16);
+    console.log(test17);
+    console.log("------------------");
+    for (let index = 0; index < test16.length; index++) {
+      // 从后拿出
+      console.log(`16栈----${test16.pop()}`);
+    }
+    for (let index = 0; index < test17.length; index++) {
+      // 从前方拿出
+      console.log(`17栈----${test17.shift()}`);
+    }
+
+
+
+
+
+
+    // 数组排序
+    let values = [1, 3, 8, 5, 15, 26]
+    // 倒叙排序
+    console.log(`倒序${values.reverse().toString()}`);//倒序26,15,5,8,3,1
+    // 数组排序
+    values.sort()
+    console.log(`顺序${values.toString()}`)//顺序1,15,26,3,5,8
+
+    // 上述的并不是我们想要的结果,我们可以自定义规则
+    function compare1(value1, value2) {//定义比较规则
+      return value1 - value2//放回值只有小于0,等于0,大于0这三种
+    }
+    function compare2(value1, value2) {//定义比较规则
+      return value2 - value1//放回值只有小于0,等于0,大于0这三种
+    }
+    values.sort(compare1)//时使用比较规则,当里面的结果大于零时将将第二个数向前移,小于零和等于零时位置不变
+    console.log(`顺序${values.toString()}`);//顺序1,3,5,8,15,26
+    values.sort(compare2)
+    console.log(`倒序${values.toString()}`);//倒序26,15,8,5,3,1
+
+    // 比较对象
+    let test14 = [{ name: "江南", age: 36 },
+    { name: "李炫一", age: 31 },
+    { name: "江北", age: 39 }]
+    function comparePlayer(test1, test2) {
+      return test1.age - test2.age
+    }
+    test14.sort(comparePlayer)//按照年龄排序
+    console.log(test14)//: {name: '李炫一', age: 31},{name: '江南', age: 36},{name: '江北', age: 39}
+
+
+    // 数组的剪切于拼合
+    // test11=["卡尔","魔术师","庞巴迪"],values=[26,15,8,5,3,1]拼接
+    let test15 = test11.concat(values)
+    console.log(`拼接----${test15}`);//拼接----卡尔,魔术师,庞巴迪,26,15,8,5,3,1
+
+    // scil可以将数组剪切成一个新的数组
+    /* 
+    记3个参数，从下标为(参数⼀)开始，删除(参数⼆)个元素，插⼊(参数三)个项。参数三可以是多个，并且是可选。通过对三个参数的组合来实现删除、插⼊、替换操作。
+    */
+    console.log(`[26,15,8,5,3,1].slice(1)---${values.slice(1)}`);//[26,15,8,5,3,1].slice(1)---15,8,5,3,1
+
+    console.log(`26,15,8,5,3,1.slice(0,0,77777)--${values.slice(0, 0, "12")}`);
+
+    //成员查找
+    //这两个⽅法在找不到数据时，返回-1
+    // values=[26,15,8,5,3,1]
+    console.log(`values=[26,15,8,5,3,1].indexof(26)----${values.indexOf(26)}`);//从数组头部查找数据返回下标位置
+    console.log(`values=[26,15,8,5,3,1].lastIndexof(26)----${values.lastIndexOf(26)}`);//从数组末尾查找数据返回下标位置
+
+    //查找符合条件的第⼀个数组成员,找不到返回undefined
+    let players = ["curry", "james", "kobe", "james", "curry"];
+    console.log(players.indexOf("james"));//1,从数组头部查找数据返回下标位置
+    console.log(players.lastIndexOf("james"));//3,从数组末尾查找数据返回下标位置
+    let findOne = players.find(function (value, index, arr) {
+      return value.includes("cu")
+    })
+    console.log("+++++++++++++++++++++++++++++++++");
+    console.log(findOne) //curry,curry包含cu
+
+    //查找符合条件的第⼀个数组成员下标，找不到返回-1
+    let findOneIndex = players.findIndex(function (value, index, arr) {
+      return value.includes("cu")
+    })
+    console.log(findOneIndex) //0,curry包含cu，第⼀个元素下标是0
+
+    /* 单纯的通过数据遍历⽐对，查找数组成员下标，⽤indexOf和lastIndexOf⽅法会更合适
+    如果需要更复杂复杂的规则查找数组成员，⽤findfindIndex⽅法更合适上⽂中includes⽅式是ES6新⽅法，⽤于判断字符串的包含关系，返回值是布尔类型
+    find和findIndex⽅法参数是：当前的值，当前的数组成员下标，原数组
+     */
+    //简写
+    let findOne1 = players.find((value, index, arr) => value.includes("cu"))
+    let findOne2 = players.find((value) => value.includes("cu")) //只传第⼀个参数
+
+
+
+    //遍历数组
+    //for( in ){}循环只能得到索引,利用索引得到值
+    for (index in players) {
+      console.log(index + ":" + players[index])
+    }//0:curry  1:james   2:kobe  3:james  4:curry
+    for (player in players) {
+      console.log(player)
+    }// 0 1 2 3 4 
+
+
+    // for( of ){}比较灵活单独的到索引,数值或是键值
+    for (let index of players.keys()) {
+      console.log(index) //打印是0,1,2,3,4
+      console.log(players[index]);//打印是curry james  kobe james curry
+    }
+    for (let elem of players.values()) {
+      console.log(elem) //打印是curry james  kobe james curry
+    }
+    for (let [index, elem] of players.entries()) {
+      console.log(index, elem) //打印如下0'curry'  1'james'   2'kobe'  3'james'  4'curry'
+    }
+
+
+
+
+    // 12. (重点)数组迭代判定
+    let players2 = [{ name: "james", age: 36 },
+    { name: "curry", age: 31 },
+    { name: "kobe", age: 39 }]
+    //every⽅法，判断是否数组每⼀个对象的年龄都⼤于30
+    let isGt30 = players2.every(function (value, index, arr) {
+      return value.age > 30
+    })
+    console.log(isGt30) //true
+    //some⽅法，判断是否数组中有⾄少⼀个对象的名字包含cu
+    let isContainCu = players2.some(function (value, index, arr) {
+      return value.name.includes("cu")
+    })
+    console.log(isContainCu)//true
+    //every，每⼀个都要满足return的条件返回   some，存在⼀些满足return的条件返回
+
+
+
+
+    players2.forEach(function (value, index, array) {
+      //这个⽅法没有返回值，可以在这⾥执⾏⼀些操作，⽐如渲染⼀个table
+      console.log(`<tr>${value.name}</tr>`) //这⾥使⽤了ES6语法，避免字符串拼接
+    })//<tr>james</tr>  <tr>curry</tr>    <tr>kobe</tr>
+
+    // forEach循环遍历每一个元素,不返回值,只是执行操作
+
+
+    //过滤数组中所有年龄⼤于30的球员，返回值也是⼀个数组
+    let ageGt30Players = players2.filter(function (value, index, array) {
+      return value.age > 30
+    })
+    console.log(ageGt30Players) //数组所有球员年龄都⼤于30，所以ageGt30Players =players
+    //将数组的中所年纪超过30有⼈的年龄都减⼩5岁
+
+
+    let young5Plauers = ageGt30Players.map(function (value, index, array) {
+      return { name: value.name, age: value.age - 5, champions: value.champions }
+    })
+    console.log(young5Plauers) //球员对象的年龄变为31,26,34
+
+
+    //计算数组中球员，年纪综合
+    let championsNums = young5Plauers.reduce(function (prev, value, index, array) {
+      return prev + value.age
+    }, 0)
+    console.log(championsNums) //91,年纪综合
+
+    // setTimeout(()=>{
+    //   console.log(`this--------${this==window}`);
+    // },1000)
+
+    /* 
+    总结
+    
+    filter⽅法⽤于过滤数组的成员，满⾜条件的成员组成⼀个新的数组返回
+    map⽅法⽤于对数组成员处理，返回⼀个处理完成之后的数组
+    reduce⽤于对数组元素进⾏归并计算，和其他数组迭代⽅法不同，它的function有四个参数。其中第⼀个参数⽐较特殊，表示上⼀次迭代计算的结果。
+    reduce除了迭代函数function，还有⼀个参数为初始值，第⼀次计算时候prev=初始值。我们这⾥设置为0
+    
+    
+
+
+
+
+
+    */
+
+
+
+    //Array.from()可以将类似数组的对象和可⽐遍历的对象(如:ES6的Set)转换为数组
+
+    let playersObje = { '0': "curry", '1': "james", '2': "kobe", length: 3 };
+    let players3 = Array.from(playersObje);
+    console.log(players);
+    /* 
+    0: "curry"
+    1: "james"
+    2: "kobe"
+    3: "james"
+    4: "curry"
+    length: 5 */
+
+    let playerSet = new Set(["curry", "james", "kobe"])
+    players3 = Array.from(playerSet);
+    console.log(players3);
+    /* 
+    0: "curry"
+    1: "james"
+    2: "kobe"
+    length: 3
+     */
+    // copyWithIn()⽤于将数组内的指定位置的成员，复制到其他位置（覆盖原有项）。
+
+    console.log([0, 1, 2, 3, 4].copyWithin(0, 3, 5))//[3, 4, 2, 3, 4]
+
+    /* 
+    第⼀个参数是target，复制到的位置
+    第⼆个参数是从哪个位置开始复制
+    第三个参数是到哪个位置结束复制
+    
+    所以上⾯例⼦是将3,4复制到数组下标为0的位置，所以最终于是[3, 4, 2, 3, 4]
+    */
+
+
+
+
+
+
+
+
+
+
+    // 链式调用
+    var p = new Promise(function (resolve, reject) {
+      // 异步操作
+      if (1) {
+        resolve("Success")
+      } else {
+        reject("failure")
+      }
+    });
+    p.then(function (data) {//处理异步操作成功数据
+      return new Promise((resolve) => {
+        resolve(data + "xxx1")
+      })
+    }).then(function (data) {///处理异步操作成功数据
+      //处理异步操作的结果
+      //上⾯的那⼀段then函数的简化写法
+      return Promise.resolve(data + "xxx2")
+    }).then((data) => {//处理异步成功操作数据。简化为箭头函数
+      //处理异步操作的结果
+      //上⾯的那⼀段then函数更简化的写法
+      return data + "xxx3"
+    }).catch(function (error) {
+      console.log("错误提示");
+    })
+    /* 
+    
+    上⾯关于Promise对象的构建，并调⽤resolve⽅法，写了三种形式。这三种形式效果是⼀样
+    的。后两种⽅式进⾏了不同程度的简写。简单起⻅，成功回调函数的参数data就写成了字符
+    串，字符串也是⼀种对象。同样，下⾯三种构造Promise对象，并调⽤reject⽅法的三种形式，也是⼀样的效果。
+    
+    */
+    /*  ⽅式⼀：
+ return new Promise((resolve.reject)=>{
+ reject({errorMsg:""})
+ })
+ ⽅式⼆：
+ return Promise.reject({errorMsg:""})
+ ⽅式三：
+ throw {errorMsg:""}
+  */
+
+
+
+
+
+
+
+    //  Promise的all方法
+    /* 
+    我们可能会遇到这样的需求，A、B、C三个异步操作，必须这三个操作都完成了才能进⾏下⼀
+    步操作。在没有promise的时候，我们通常定义三个变量aflag、bflag、cflag初始值为false， 当A执⾏完成时置aflag=true。以此类推。判断三个flag都为true，才执⾏下⼀步的操作。有了Promise的all⽅法，这⼀切就变得顺理成章，我们再也不⽤判断flag了。代码如下：
+    */
+
+    var p1 = new Promise((resolve) => {
+      resolve({ msg: "1" })
+    }), p2 = new Promise((resolve) => {
+      resolve({ msg: "2" })
+    }), p3 = new Promise((resolve) => {
+      resolve({ msg: "3" })
+    });
+    Promise.all([p1, p2, p3]).then(function (results) {
+      console.log(results); // [{msg:"1"},{msg:"2"},{msg:"3"}]
+    });
+
+
+    // 在开发过程中，当你想要获取异步操作的处理结果的时候，使⽤Promise！
+
+
+    // getTableInfo() {
+
+    //   return new Promise((resolve, reject) => {
+    //     //连接数据库的结果是⼀个回调函数，回调函数是异步的，我想获取连接结果
+    //     this.connection.connect(err => { //lambda写法的回调函数
+    //       if (err) reject("数据库连接失败，请检查数据库连接！")
+    //     });
+    //     let sql = ' 定义⼀个SQL'
+    //     //数据库查询结果是⼀个回调函数，回调函数是异步的，我想获取查询结果数据
+    //     this.connection.query(sql, this.dbName,
+    //       function (error, results, fields) { //正常写法的回调函数
+    //         if (error) {
+    //           reject(error) //查询数据出错
+    //         } else {
+    //           resolve(JSON.parse(JSON.stringify(results))) //查询成功，返回查询结果
+    //         }
+    //       }
+    //     )
+    //     //数据库连接关闭结果是⼀个回调函数，回调函数是异步的，如果连接关闭失败我需要得到响应
+    //     this.connection.end(function (err) {
+    //       if (err) reject("数据库关闭失败！")
+    //     })
+    //   })
+    // }
+
+
+    mysqlInfo.getTableInfo().then(results => {
+      //将results查询结果渲染到⻚⾯上
+    }).catch(error => {
+      //给⽤户⼀个错误提示
+    });
+
+  </script>
+</body>
+
+</html>

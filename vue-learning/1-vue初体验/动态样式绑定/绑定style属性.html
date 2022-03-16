@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  #changeColor{
+    width: 1000px;
+    height: 1000px;
+  }
+</style>
+<body >
+  <div id="app" >
+    <div id="changeColor" :style="{'background-color':color1}">
+      <button @click="changeColor">切换背景</button>
+      <button @click="addFontSize">增大按钮</button>
+      <h2 :style="{'color':'red','font-size':fontSize+'px'}">
+        绑定属性
+      </h2>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    let app = Vue.createApp({
+      data() {
+      return {
+      color1:'black',
+      fontSize:20,
+      };
+      },
+      created() {
+        
+      },
+      mounted() {
+        
+      },
+      methods: {
+        addFontSize(){
+          this.fontSize++;
+        },
+        changeColor(){
+        if(this.color1==="black"){
+          this.color1='white'
+        }else{
+          this.color1='black'
+        }
+        }
+      },
+    });
+    let vm = app.mount('#app');
+  </script>
+</body>
+
+<html>

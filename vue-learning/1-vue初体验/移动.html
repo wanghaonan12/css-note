@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动方块</title>
+  <style>
+    #app{
+      width: 800px;
+      height: 800px;
+      margin: 0 auto;
+      background-color: rgb(163, 110, 110);
+      /* display: flex; */
+      position: relative;
+      /* justify-content: center;
+      align-items: center; */
+    }
+    #box{
+      position: relative;
+      top: 50%;
+      left:50%;
+      width: 100px;
+      height: 100px;
+      background-color: #f6f6f6;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@next"></script>
+  <div   id="app">
+    <input @Keyup.right="right" 
+         @Keyup.left="left"
+         @Keyup.up="up"
+         @Keyup.down="down"
+         id="box">
+
+    </input>
+  </div>
+  <script>
+    const app = Vue.createApp({
+      methods: {
+        right(){
+         
+         document.getElementById("box").left-=1
+        },
+        left(){
+          document.getElementById("box").left+=1
+        },
+        up(){
+          document.getElementById("box").top+=1
+        },
+        down(){
+          document.getElementById("box").top-=1
+        }
+      },
+    
+    }).mount('#box')
+  </script>
+</body>
+</html>
